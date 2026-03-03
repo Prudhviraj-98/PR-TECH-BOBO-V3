@@ -1,17 +1,218 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>PR-TECH BOBO V3 Installer</title>
-  <script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PR-TECH BOBO V3</title>
+
+<script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"></script>
+
+<style>
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: white;
+  color: #ff6600;
+}
+
+.section {
+  padding: 100px 20px;
+  max-width: 900px;
+  margin: auto;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.center {
+  text-align: center;
+}
+
+h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.button-container {
+  margin-top: 30px;
+}
+
+.card {
+  border: 2px solid #ff6600;
+  border-radius: 18px;
+  padding: 30px;
+  margin-top: 30px;
+}
+
+.pin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.pin-table th, .pin-table td {
+  border: 1px solid #ff6600;
+  padding: 12px;
+  text-align: left;
+}
+
+.pin-table th {
+  background: #ff6600;
+  color: white;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 20px;
+  margin-top: 30px;
+}
+
+footer {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 18px;
+}
+
+</style>
 </head>
-<body style="text-align:center; font-family:Arial; margin-top:50px;">
+
+<body>
+
+<!-- HERO SECTION -->
+<div class="section center">
   <h1>PR-TECH BOBO V3</h1>
-  <p>ESP32-C3 Super Mini Firmware Installer</p>
+  <p>Minimal. Smart. Powerful.</p>
+  <p>ESP32-C3 Smart OLED System</p>
+</div>
 
-  <esp-web-install-button manifest="manifest.json">
-  </esp-web-install-button>
+<!-- IMAGE PREVIEW -->
+<div class="section center">
+  <h2>BOBO Preview</h2>
+  <p>Your animated SH1106 OLED system.</p>
 
-  <p>Use Google Chrome Browser</p>
+  <!-- Replace image URL below with your uploaded BOBO image -->
+  <img src="https://via.placeholder.com/600x400?text=BOBO+Preview" alt="BOBO Preview">
+
+</div>
+
+<!-- INSTALL SECTION -->
+<div class="section center">
+  <h2>Install Firmware</h2>
+  <p>Flash directly from Google Chrome.</p>
+
+  <div class="button-container">
+    <esp-web-install-button manifest="manifest.json">
+    </esp-web-install-button>
+  </div>
+
+  <p style="margin-top:20px;">Use Chrome (PC or Android)</p>
+</div>
+
+<!-- DISPLAY SPEC -->
+<div class="section">
+  <h2>Display Specification</h2>
+  <div class="card">
+    <p><strong>Model:</strong> SH1106</p>
+    <p><strong>Size:</strong> 1.3 Inch</p>
+    <p><strong>Resolution:</strong> 128x64</p>
+    <p><strong>Interface:</strong> I2C</p>
+  </div>
+</div>
+
+<!-- PIN DEFINITIONS -->
+<div class="section">
+  <h2>Pin Definitions</h2>
+
+  <table class="pin-table">
+    <tr>
+      <th>Component</th>
+      <th>GPIO</th>
+    </tr>
+    <tr>
+      <td>OLED SDA</td>
+      <td>GPIO 4</td>
+    </tr>
+    <tr>
+      <td>OLED SCL</td>
+      <td>GPIO 5</td>
+    </tr>
+    <tr>
+      <td>Control Button</td>
+      <td>GPIO 3</td>
+    </tr>
+    <tr>
+      <td>VCC</td>
+      <td>3.3V</td>
+    </tr>
+    <tr>
+      <td>GND</td>
+      <td>GND</td>
+    </tr>
+  </table>
+</div>
+
+<!-- BUILD GUIDE -->
+<div class="section">
+  <h2>How To Build</h2>
+  <div class="card">
+    <ol>
+      <li>Connect SH1106 SDA → GPIO 4</li>
+      <li>Connect SH1106 SCL → GPIO 5</li>
+      <li>Connect Button → GPIO 3</li>
+      <li>Connect 3.3V & GND</li>
+      <li>Power via USB</li>
+      <li>Click Install Firmware</li>
+      <li>Done</li>
+    </ol>
+  </div>
+</div>
+
+<!-- VERSION -->
+<div class="section center">
+  <h2>Firmware</h2>
+  <p>BOBO V3.0</p>
+  <p>By PR-TECH</p>
+</div>
+
+<footer>
+Instagram: @_pr_tech
+</footer>
+
+<script>
+const sections = document.querySelectorAll('.section');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.2 });
+
+sections.forEach(section => {
+  observer.observe(section);
+});
+</script>
+
 </body>
 </html>
